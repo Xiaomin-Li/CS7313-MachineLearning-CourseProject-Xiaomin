@@ -61,6 +61,8 @@ import distiller.apputils as apputils
 import parser
 import os
 import numpy as np
+import torch.nn as nn
+
 
 
 # Logger handle
@@ -80,6 +82,11 @@ def main():
 
     
 def handle_subapps(model, criterion, optimizer, compression_scheduler, pylogger, args):
+    if args.transfer:
+        model.module.fc = nn.Linear(model.module.fc.in_features, args.num_classes)
+        model = model.module
+        model = nn.DataParallel(model, device_ids=args.gpus)
+        print(model.module.fc)
     def load_test_data(args):
         test_loader = classifier.load_data(args, load_train=False, load_val=False, load_test=True)
         return test_loader

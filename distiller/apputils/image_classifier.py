@@ -185,6 +185,8 @@ def init_classifier_compression_arg_parser():
 
     parser = argparse.ArgumentParser(description='Distiller image classification model compression')
     parser.add_argument('data', metavar='DIR', help='path to dataset')
+    parser.add_argument('--dataset', help='dataset to use imagenet, cifar10, cifar10_resize, mnist')
+    parser.add_argument('--transfer', action='store_true', help='transfer to dataset')
     parser.add_argument('--arch', '-a', metavar='ARCH', default='resnet18', type=lambda s: s.lower(),
                         choices=models.ALL_MODEL_NAMES,
                         help='model architecture: ' +
@@ -353,7 +355,7 @@ def _config_compute_device(args):
 
 def _infer_implicit_args(args):
     # Infer the dataset from the model name
-    if not hasattr(args, 'dataset'):
+    if not hasattr(args, 'dataset') or args.dataset is None:
         args.dataset = distiller.apputils.classification_dataset_str_from_arch(args.arch)
     if not hasattr(args, "num_classes"):
         args.num_classes = distiller.apputils.classification_num_classes(args.dataset)
