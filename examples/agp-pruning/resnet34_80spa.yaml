@@ -1,9 +1,4 @@
-'''
-time python3 compress_classifier.py -a=resnet34 --pretrained -p=50 
-../../../data.imagenet/ -j=12 --epochs=25 --lr=0.005 
---compress=../agp-pruning/resnet34_80spa.yaml --vs=0  
---resume-from ../../../resnet32_pruned/checkpoint.pth.tar
-'''
+#python3 compress_classifier.py -a=resnet34 --pretrained -p=50 ../../../datasets/imagenet/ -j=12 --epochs=75 --lr=0.005 -b 128 --compress=../agp-pruning/resnet34_80spa.yaml --vs=0 --resume-from ../../../resnet32_pruned/checkpoint.pth.tar
 
 version: 1
 
