@@ -1,4 +1,4 @@
-#time python3 compress_classifier.py -a=vgg16 --pretrained -p=50 /home/cody/datasets/ -j=30 --epochs=65 --lr=0.005 --compress=../agp-pruning/vgg16_50spa.yaml --vs=0
+#time python3 compress_classifier.py -a=vgg16 --pretrained -p=50 /home/cody/datasets/imagenet -j=30 --epochs=65 --lr=0.005 --compress=../agp-pruning/vgg16_70spa.yaml --vs=0
 
 version: 1
 
