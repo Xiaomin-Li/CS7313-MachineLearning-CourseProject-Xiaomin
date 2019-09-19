@@ -1,4 +1,4 @@
-#python3 compress_classifier.py -a=resnet34 --pretrained -p=50 ../../../datasets/imagenet/ -j=12 --epochs=85 --lr=0.005 -b 128 --compress=../agp-pruning/resnet34_80spa.yaml --vs=0 --resume-from ../../../resnet34_70spa/best.pth.tar
+#python3 compress_classifier.py -a=resnet34 --pretrained -p=50 ../../../datasets/imagenet/ -j=12 --epochs=100 --lr=0.005 -b 128 --compress=../agp-pruning/resnet34_90spa.yaml --vs=0 --resume-from ../../../resnet34_80spa/best.pth.tar
 
 version: 1
 
@@ -7,7 +7,7 @@ pruners:
   conv_pruner:
     class: AutomatedGradualPruner
     initial_sparsity : 0.6853
-    final_sparsity: 0.80
+    final_sparsity: 0.90
     weights: [
     #module.conv1.weight,
     module.layer1.0.conv1.weight,
@@ -73,12 +73,12 @@ lr_schedulers:
 policies:
   - pruner:
       instance_name : conv_pruner
-    starting_epoch: 70
-    ending_epoch: 79
+    starting_epoch: 85
+    ending_epoch: 94
     frequency: 1
 
   - lr_scheduler:
       instance_name: pruning_lr
-    starting_epoch: 80
-    ending_epoch: 85
+    starting_epoch: 95
+    ending_epoch: 100
     frequency: 1
