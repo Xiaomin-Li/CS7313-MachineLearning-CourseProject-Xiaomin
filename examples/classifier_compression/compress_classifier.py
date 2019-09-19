@@ -68,6 +68,7 @@ import torch.nn as nn
 # Logger handle
 msglogger = logging.getLogger()
 
+custom_datasets = ['cifar10_resize']
 
 def main():
     # Parse arguments
@@ -82,7 +83,7 @@ def main():
 
     
 def handle_subapps(model, criterion, optimizer, compression_scheduler, pylogger, args):
-    if args.transfer:
+    if args.transfer or args.dataset in custom_datasets:
         model.module.fc = nn.Linear(model.module.fc.in_features, args.num_classes)
         model = model.module
         model = nn.DataParallel(model, device_ids=args.gpus)
