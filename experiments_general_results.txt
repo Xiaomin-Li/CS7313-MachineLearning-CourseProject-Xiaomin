@@ -1,0 +1,7 @@
+Resnet(pre-trained) transfer on cifar10_resize 
+Model       Accuracy TOP1       TOP5
+dense       96.130              99.940
+50%         96.580              99.900
+70%         96.370              99.900
+80%
+90%
