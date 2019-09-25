@@ -30,7 +30,7 @@ from distiller.utils import set_model_input_shape_attr
 import logging
 msglogger = logging.getLogger()
 
-SUPPORTED_DATASETS = ('imagenet', 'cifar10', 'mnist', 'cifar10_resize')
+SUPPORTED_DATASETS = ('imagenet', 'cifar10', 'mnist', 'cifar10_resize','food101_resize')
 
 # ResNet special treatment: we have our own version of ResNet, so we need to over-ride
 # TorchVision's version.
@@ -100,6 +100,8 @@ def create_model(pretrained, dataset, arch, parallel=True, device_ids=None):
         elif dataset == 'cifar10':
             model = _create_cifar10_model(arch, pretrained)
         elif dataset == 'cifar10_resize':
+            model, cadene = _create_imagenet_model(arch, pretrained)
+        elif dataset == 'food101_resize':
             model, cadene = _create_imagenet_model(arch, pretrained)
         elif dataset == 'mnist':
             model = _create_mnist_model(arch, pretrained)
