@@ -3,6 +3,17 @@ Model       Accuracy TOP1       TOP5
 dense       96.130              99.940
 50%         96.580              99.900
 70%         96.370              99.900
-80%
+80%         96.200              99.920
+90%         95.780              99.910
+scratch     88.720              99.450 
+
+
+VGG16（pre-trained） transfer on cifar10_resize 
+Model       Accuracy TOP1       TOP5
+dense       93.080              99.720
+50%         93.300              99.890
+70%         93.810              99.870
+80%         94.260              99.880
 90%
-train scratch 
+scratch     88.210              99.580
+

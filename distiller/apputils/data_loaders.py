@@ -28,7 +28,7 @@ import numpy as np
 import distiller
 
 
-DATASETS_NAMES = ['imagenet', 'cifar10', 'mnist', 'cifar10_resize']
+DATASETS_NAMES = ['imagenet', 'cifar10', 'mnist', 'cifar10_resize', 'CUB_200_resize']
 
 
 def classification_dataset_str_from_arch(arch):
@@ -45,6 +45,7 @@ def classification_num_classes(dataset):
     return {'cifar10': 10,
             'mnist': 10,
             'cifar10_resize': 10,
+            'CUB_200_resize':200,
             'imagenet': 1000}.get(dataset, None)
 
 
@@ -54,6 +55,8 @@ def classification_get_input_shape(dataset):
     elif dataset == 'cifar10':
         return 1, 3, 32, 32
     elif dataset == 'cifar10_resize':
+        return 1, 3, 224, 224
+    elif dataset == 'CUB_200_resize':
         return 1, 3, 224, 224
     elif dataset == 'mnist':
         return 1, 1, 28, 28
@@ -65,6 +68,7 @@ def __dataset_factory(dataset):
     return {'cifar10': cifar10_get_datasets,
             'mnist': mnist_get_datasets,
             'cifar10_resize': cifar10_resize_get_datasets,
+            'CUB_200_resize':CUB_200_resize_get_datasets,
             'imagenet': imagenet_get_datasets}.get(dataset, None)
 
 
@@ -194,6 +198,28 @@ def cifar10_resize_get_datasets(data_dir):
 
     test_dataset = datasets.CIFAR10(root=data_dir, train=False,
                                     download=True, transform=test_transform)
+
+    return train_dataset, test_dataset
+
+def CUB_200_resize_get_datasets(data_dir):
+
+    data_dir = os.path.join(data_dir, 'images')
+    train_transform = transforms.Compose([
+        transforms.RandomResizedCrop(224),
+        transforms.RandomHorizontalFlip(),
+        transforms.ToTensor(),
+        transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
+    ])
+
+    train_dataset = datasets.ImageFolder(data_dir, train_transform)
+
+    test_transform = transforms.Compose([
+        transforms.Resize(224),
+        transforms.ToTensor(),
+        transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
+    ])
+
+    test_dataset = datasets.ImageFolder(data_dir, test_transform)
 
     return train_dataset, test_dataset
 
