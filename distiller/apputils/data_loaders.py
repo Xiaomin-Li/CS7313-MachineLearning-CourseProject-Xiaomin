@@ -203,7 +203,8 @@ def cifar10_resize_get_datasets(data_dir):
 
 def food101_resize_get_datasets(data_dir):
 
-    data_dir = os.path.join(data_dir, 'images')
+    train_dir = os.path.join(data_dir, 'train/images')
+    test_dir = os.path.join(data_dir, 'test/images')
     train_transform = transforms.Compose([
         transforms.RandomResizedCrop(224),
         transforms.RandomHorizontalFlip(),
@@ -211,7 +212,7 @@ def food101_resize_get_datasets(data_dir):
         transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
     ])
 
-    train_dataset = datasets.ImageFolder(data_dir, train_transform)
+    train_dataset = datasets.ImageFolder(train_dir, train_transform)
 
     test_transform = transforms.Compose([
         transforms.Resize(224),
@@ -219,7 +220,7 @@ def food101_resize_get_datasets(data_dir):
         transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
     ])
 
-    test_dataset = datasets.ImageFolder(data_dir, test_transform)
+    test_dataset = datasets.ImageFolder(test_dir, test_transform)
 
     return train_dataset, test_dataset
 
