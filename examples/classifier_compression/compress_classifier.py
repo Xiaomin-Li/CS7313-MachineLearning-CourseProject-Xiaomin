@@ -68,7 +68,7 @@ import torch.nn as nn
 # Logger handle
 msglogger = logging.getLogger()
 
-custom_datasets = ['cifar10_resize', 'CUB_200_resize']
+custom_datasets = ['cifar10_resize', 'food101_resize']
 
 def main():
     # Parse arguments

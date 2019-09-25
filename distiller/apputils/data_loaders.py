@@ -28,7 +28,7 @@ import numpy as np
 import distiller
 
 
-DATASETS_NAMES = ['imagenet', 'cifar10', 'mnist', 'cifar10_resize', 'CUB_200_resize']
+DATASETS_NAMES = ['imagenet', 'cifar10', 'mnist', 'cifar10_resize', 'food101_resize']
 
 
 def classification_dataset_str_from_arch(arch):
@@ -45,7 +45,7 @@ def classification_num_classes(dataset):
     return {'cifar10': 10,
             'mnist': 10,
             'cifar10_resize': 10,
-            'CUB_200_resize':200,
+            'food101_resize':101,
             'imagenet': 1000}.get(dataset, None)
 
 
@@ -56,7 +56,7 @@ def classification_get_input_shape(dataset):
         return 1, 3, 32, 32
     elif dataset == 'cifar10_resize':
         return 1, 3, 224, 224
-    elif dataset == 'CUB_200_resize':
+    elif dataset == 'food101_resize':
         return 1, 3, 224, 224
     elif dataset == 'mnist':
         return 1, 1, 28, 28
@@ -68,7 +68,7 @@ def __dataset_factory(dataset):
     return {'cifar10': cifar10_get_datasets,
             'mnist': mnist_get_datasets,
             'cifar10_resize': cifar10_resize_get_datasets,
-            'CUB_200_resize':CUB_200_resize_get_datasets,
+            'food101_resize':food101_resize_get_datasets,
             'imagenet': imagenet_get_datasets}.get(dataset, None)
 
 
@@ -201,7 +201,7 @@ def cifar10_resize_get_datasets(data_dir):
 
     return train_dataset, test_dataset
 
-def CUB_200_resize_get_datasets(data_dir):
+def food101_resize_get_datasets(data_dir):
 
     data_dir = os.path.join(data_dir, 'images')
     train_transform = transforms.Compose([
