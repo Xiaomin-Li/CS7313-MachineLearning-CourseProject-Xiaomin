@@ -215,7 +215,8 @@ def food101_resize_get_datasets(data_dir):
     train_dataset = datasets.ImageFolder(train_dir, train_transform)
 
     test_transform = transforms.Compose([
-        transforms.Resize(224),
+        transforms.Resize(300),
+        transforms.CenterCrop(224),
         transforms.ToTensor(),
         transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
     ])
