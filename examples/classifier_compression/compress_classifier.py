@@ -170,9 +170,15 @@ def early_exit_init(args):
 
 class ClassifierCompressorSampleApp(classifier.ClassifierCompressor):
     def __init__(self, args, script_dir):
+        checkpoint_copy = None
+        if args.dataset in custom_datasets and args.resumed_checkpoint_path:
+            checkpoint_copy = args.resumed_checkpoint_path
+            args.resumed_checkpoint_path = ''
         super().__init__(args, script_dir)
         early_exit_init(args)
         # Save the randomly-initialized model before training (useful for lottery-ticket method)
+        if checkpoint_copy is not None:
+            args.resumed_checkpoint_path = checkpoint_copy
         if args.save_untrained_model:
             ckpt_name = '_'.join((self.args.name or "", "untrained"))
             apputils.save_checkpoint(0, self.args.arch, self.model,
