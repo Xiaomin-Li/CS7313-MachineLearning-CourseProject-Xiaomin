@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#dense 
+time python3 compress_classifier.py -a=vgg16 --pretrained --transfer --dataset=food101_resize -p=50 --batch-size 32 ../../../datasets/food-101/ -j=8 --epochs=50 --lr=0.005 --vs=0 --reset-optimizer -n vgg16_dense_food101
+#50%
+time python3 compress_classifier.py -a=vgg16 --resume-from=../../../experiment_results/vgg16_50spa_chkp/best.pth.tar --transfer --dataset=food101_resize -p=50 --batch-size 32 ../../../datasets/food-101/ -j=8 --epochs=50 --lr=0.005 --vs=0 --reset-optimizer -n vgg16_50spa_food101
+#70%
+time python3 compress_classifier.py -a=vgg16 --resume-from=../../../experiment_results/vgg16_70spa_chkp/best.pth.tar --transfer --dataset=food101_resize -p=50 --batch-size 32 ../../../datasets/food-101/ -j=8 --epochs=50 --lr=0.005 --vs=0 --reset-optimizer -n vgg16_70spa_food101
+#80%
+time python3 compress_classifier.py -a=vgg16 --resume-from=../../../experiment_results/vgg16_80spa_chkp/best.pth.tar --transfer --dataset=food101_resize -p=50 --batch-size 32 ../../../datasets/food-101/ -j=8 --epochs=50 --lr=0.005 --vs=0 --reset-optimizer -n vgg16_80spa_food101
+#90%
+time python3 compress_classifier.py -a=vgg16 --resume-from=../../../experiment_results/vgg16_90spa_chkp/best.pth.tar --transfer --dataset=food101_resize -p=50 --batch-size 32 ../../../datasets/food-101/ -j=8 --epochs=50 --lr=0.005 --vs=0 --reset-optimizer -n vgg16_90spa_food101
+#scratch
+time python3 compress_classifier.py -a=vgg16 --dataset=food101_resize -p=50 --batch-size 32 ../../../datasets/food-101/ -j=8 --epochs=50 --lr=0.005 --vs=0 -n vgg16_scratch_food101
