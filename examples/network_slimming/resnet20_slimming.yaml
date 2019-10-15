@@ -33,8 +33,8 @@ policies:
     ending_epoch: 300
     frequency: 1
 
-  # - regularizer:
-  #     instance_name: Channels_groups_regularizer
-  #   starting_epoch: 0
-  #   ending_epoch: 180
-  #   frequency: 1
+  - regularizer:
+      instance_name: Channels_groups_regularizer
+    starting_epoch: 0
+    ending_epoch: 180
+    frequency: 1

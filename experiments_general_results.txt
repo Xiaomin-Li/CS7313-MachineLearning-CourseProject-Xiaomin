@@ -8,12 +8,29 @@ dense       96.130              99.940
 scratch     88.720              99.450 
 
 
+Resnet(pre-trained) transfer on food101_resize
+Model       Accuracy TOP1       TOP5
+dense       82.178              95.453
+50%         82.222              95.640
+70%         82.606              95.750
+80%         81.406              95.287
+90%         81.667              95.564
+scratch     70.657              90.646 
+
 VGG16（pre-trained） transfer on cifar10_resize 
 Model       Accuracy TOP1       TOP5
 dense       93.080              99.720
 50%         93.300              99.890
 70%         93.810              99.870
-80%         94.260              99.880
-90%
+80%          94.260              99.880
+90%         93.330              99.790
 scratch     88.210              99.580
 
+VGG16(pre-trained) transfer on food101_resize
+Model       Accuracy TOP1       TOP5
+dense       78.547              94.036
+50%         80.602              95.180
+70%         
+80%         
+90%         
+scratch     
