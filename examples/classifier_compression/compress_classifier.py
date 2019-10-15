@@ -86,7 +86,10 @@ def handle_subapps(model, criterion, optimizer, compression_scheduler, pylogger,
     if args.transfer or args.dataset in custom_datasets:
         model.module.fc = nn.Linear(model.module.fc.in_features, args.num_classes)
         model = model.module
+        if  args.resumed_checkpoint_path:
+            model , _, _, _ = apputils.load_checkpoint(model, args.resumed_checkpoint_path, model_device=args.device)
         model = nn.DataParallel(model, device_ids=args.gpus)
+        
         print(model.module.fc)
     def load_test_data(args):
         test_loader = classifier.load_data(args, load_train=False, load_val=False, load_test=True)
