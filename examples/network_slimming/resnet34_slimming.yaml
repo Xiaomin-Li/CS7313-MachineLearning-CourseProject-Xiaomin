@@ -4,7 +4,7 @@
 #   arXiv:1708.06519v1
 #   Aug 2017
 #
-# time python3 compress_classifier.py --arch resnet34  ../../../datasets/imagenet -p=50 --lr=0.3 --epochs=180 --compress=../network_slimming/resnet34_slimming.yaml -j=1 --deterministic
+# time python3 compress_classifier.py --arch resnet34  --dataset=cifar10_resize ../../../data.cifar10 -p=50 -b 128 --lr=0.3 --epochs=180 --compress=../network_slimming/resnet34_slimming.yaml --resume-from ../../../resnet_dense_cifar10/checkpoint.pth.tar -j=30 -n resnet34_cifar10_slimming_50spa
 
 
 # Parameters:
@@ -78,7 +78,7 @@ regularizers:
       module.layer3.5.bn2.weight: 0.007
       module.layer4.0.bn2.weight: 0.007
       module.layer4.1.bn2.weight: 0.007
-      #module.layer4.2.bn2.weight: 0.007
+      module.layer4.2.bn2.weight: 0.007
 
 policies:
   - lr_scheduler:

@@ -1,0 +1,73 @@
+
+#prune after transfer learning resnet34
+# time python3 compress_classifier.py -a=resnet34 --dataset=cifar10_resize -p=50 -b 64 ../../../data.cifar10/ -j=12 --epochs=50 --lr=0.005 --compress=../agp-pruning/resnet34_prune_after_50spa_agp.yaml --vs=0 --resume-from ../../../experiment_results/resnet_dense_cifar10/checkpoint.pth.tar
+
+#time python3 compress_classifier.py -a=resnet34 --dataset=food101_resize -p=50 -b 64 ../../../datasets/food-101/ -j=12 --epochs=50 --lr=0.005 --compress=../agp-pruning/resnet34_prune_after_50spa_agp.yaml --vs=0 --resume-from ../../../experiment_results/food-101-transfer-results/resnet34_dense_food101___2019.09.27-100008/resnet34_dense_food101_checkpoint.pth.tar -n resnet34_prune_after_50spa_food101
+version: 1
+
+pruners:
+
+  conv_pruner:
+    class: AutomatedGradualPruner
+    initial_sparsity : 0.05
+    final_sparsity: 0.50
+    weights: [
+      module.conv1.weight,                 
+      module.layer1.0.conv1.weight,        
+      module.layer1.0.conv2.weight,        
+      module.layer1.1.conv1.weight,        
+      module.layer1.1.conv2.weight,        
+      module.layer1.2.conv1.weight,        
+      module.layer1.2.conv2.weight,        
+      module.layer2.0.conv1.weight,        
+      module.layer2.0.conv2.weight,        
+      module.layer2.0.downsample.0.weight, 
+      module.layer2.1.conv1.weight,        
+      module.layer2.1.conv2.weight,        
+      module.layer2.2.conv1.weight,        
+      module.layer2.2.conv2.weight,        
+      module.layer2.3.conv1.weight,        
+      module.layer2.3.conv2.weight,        
+      module.layer3.0.conv1.weight,        
+      module.layer3.0.conv2.weight,        
+      module.layer3.0.downsample.0.weight, 
+      module.layer3.1.conv1.weight,        
+      module.layer3.1.conv2.weight,        
+      module.layer3.2.conv1.weight,        
+      module.layer3.2.conv2.weight,        
+      module.layer3.3.conv1.weight,        
+      module.layer3.3.conv2.weight,        
+      module.layer3.4.conv1.weight,        
+      module.layer3.4.conv2.weight,        
+      module.layer3.5.conv1.weight,        
+      module.layer3.5.conv2.weight,        
+      module.layer4.0.conv1.weight,        
+      module.layer4.0.conv2.weight,        
+      module.layer4.0.downsample.0.weight, 
+      module.layer4.1.conv1.weight,        
+      module.layer4.1.conv2.weight,        
+      module.layer4.2.conv1.weight,        
+      module.layer4.2.conv2.weight,        
+     ]                       
+
+
+lr_schedulers:
+   pruning_lr:
+     class: ExponentialLR
+     gamma: 0.95
+
+
+policies:
+
+  - pruner:
+      instance_name : conv_pruner
+    starting_epoch: 0
+    ending_epoch: 25
+    frequency: 1
+
+
+  - lr_scheduler:
+      instance_name: pruning_lr
+    starting_epoch: 26
+    ending_epoch: 47
+    frequency: 1

@@ -1,0 +1,50 @@
+#time python3 compress_classifier.py -a=vgg16 --dataset=cifar10_resize -p=50 ../../../data.cifar10/ -b 128 -j=12 --epochs=50 --lr=0.005 --compress=../agp-pruning/vgg16_prune50_aftertransfer.yaml --vs=0 --resume-from ../../../experiment_results/vgg16_dense_tans_cifar10/checkpoint.pth.tar
+
+version: 1
+
+pruners:
+
+  conv_pruner:
+    class: AutomatedGradualPruner
+    initial_sparsity : 0.05
+    final_sparsity: 0.50
+    weights: [
+    #module.conv1.weight,
+    features.module.0.weight,
+    features.module.2.weight,
+    features.module.5.weight,
+    features.module.7.weight,
+    features.module.10.weight,
+    features.module.12.weight,
+    features.module.14.weight,
+    features.module.17.weight,
+    features.module.19.weight,
+    features.module.21.weight,
+    features.module.24.weight,
+    features.module.26.weight,
+    features.module.28.weight,
+    classifier.0.weight,
+    classifier.3.weight]
+    ]
+
+
+lr_schedulers:
+   pruning_lr:
+     class: ExponentialLR
+     gamma: 0.95
+
+
+policies:
+
+  - pruner:
+      instance_name : conv_pruner
+    starting_epoch: 0
+    ending_epoch: 35
+    frequency: 1
+
+
+  - lr_scheduler:
+      instance_name: pruning_lr
+    starting_epoch: 36
+    ending_epoch: 80
+    frequency: 1
