@@ -1,5 +1,7 @@
 #time python3 compress_classifier.py -a=vgg16 --pretrained -p=50 /home/cody/datasets/imagenet -j=30 --epochs=50 --lr=0.005 --compress=../agp-pruning/vgg16_50spa.yaml --vs=0
 
+#time python3 compress_classifier.py -a=vgg16 --dataset=cifar10_resize -p=50 -b 16 ../../../data.cifar10/ -j=12 --epochs=50 --lr=0.005 --compress=../agp-pruning/vgg16_50spa.yaml --vs=0 --resume-from ../../../experiment_results/vgg16_dense_tans_cifar10/checkpoint.pth.tar -n vgg16_prune_after_50spa_cifar10
+
 version: 1
 
 pruners:
@@ -25,6 +27,9 @@ pruners:
     features.module.28.weight,
     #classifier.0.weight,
     #classifier.3.weight]
+    classifier.0.weight,
+    classifier.3.weight,
+    classifier.6.weight
     ]
 
 

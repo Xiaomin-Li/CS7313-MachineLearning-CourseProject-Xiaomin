@@ -1,0 +1,17 @@
+parameter,shape,volume,sparse volume,sparsity level
+features.module.0.weight,"(64, 3, 3, 3)",1728,1728,0.0
+features.module.2.weight,"(64, 64, 3, 3)",36864,36864,0.0
+features.module.5.weight,"(128, 64, 3, 3)",73728,73728,0.0
+features.module.7.weight,"(128, 128, 3, 3)",147456,147456,0.0
+features.module.10.weight,"(256, 128, 3, 3)",294912,294912,0.0
+features.module.12.weight,"(256, 256, 3, 3)",589824,589824,0.0
+features.module.14.weight,"(256, 256, 3, 3)",589824,589824,0.0
+features.module.17.weight,"(512, 256, 3, 3)",1179648,1179648,0.0
+features.module.19.weight,"(512, 512, 3, 3)",2359296,2359296,0.0
+features.module.21.weight,"(512, 512, 3, 3)",2359296,2359296,0.0
+features.module.24.weight,"(512, 512, 3, 3)",2359296,2359296,0.0
+features.module.26.weight,"(512, 512, 3, 3)",2359296,2359296,0.0
+features.module.28.weight,"(512, 512, 3, 3)",2359296,2359295,4.2385525178545436e-05
+classifier.0.weight,"(4096, 25088)",102760448,102760437,1.0704507635850291e-05
+classifier.3.weight,"(4096, 4096)",16777216,16777213,1.7881393432617188e-05
+classifier.6.weight,"(1000, 4096)",4096000,4096000,0.0

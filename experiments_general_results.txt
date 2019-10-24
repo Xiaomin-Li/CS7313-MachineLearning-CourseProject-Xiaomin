@@ -15,6 +15,16 @@ Model       Accuracy TOP1       TOP5
 80%         96.570              99.860
 90%         96.300              99.880
 
+Resnet34 transfer on cifar10_resize then prune (structure pruning, network slimming)
+(use the upper dense model) 
+Model       Accuracy TOP1       TOP5
+0.5         88.440              99.430     * might not be accurate 
+
+Resnet34 train from scratch cifar10_resize then prune (structure pruning, network slimming)
+(use the upper scratch model)
+Parameter       Accuracy TOP1       TOP5            Loss      
+0.007           90.720              99.610          0.281
+
 
 
 Resnet34(pre-trained) transfer on food101_resize
@@ -29,10 +39,10 @@ scratch     70.657              90.646
 Resnet34 transfer on food101_resize then prune 
 (use the upper dense model) 
 Model       Accuracy TOP1       TOP5 
-50%         84.891
-70%
-80%
-90%
+50%         84.891              96.055
+70%         84.646              96.158
+80%         84.566              95.988
+90%         84.150              95.810
 
 
 VGG16（pre-trained） transfer on cifar10_resize 
@@ -40,9 +50,19 @@ Model       Accuracy TOP1       TOP5
 dense       93.080              99.720
 50%         93.300              99.890
 70%         93.810              99.870
-80%          94.260              99.880
+80%         94.260              99.880
 90%         93.330              99.790
 scratch     88.210              99.580
+
+VGG16 transfer on cifar10_resize then prune 
+(use the upper dense model) 
+Model       Accuracy TOP1       TOP5 
+50%         94.560              99.860
+70%         95.070              99.870
+80%
+90%
+
+
 
 VGG16(pre-trained) transfer on food101_resize
 Model       Accuracy TOP1       TOP5
@@ -52,3 +72,8 @@ dense       78.547              94.036
 80%         80.135              95.117
 90%         77.085              93.798
 scratch     72.412              91.802
+
+
+VGG16 transfer on food101_resize then prune 
+(use the upper dense model) 
+Model       Accuracy TOP1       TOP5 

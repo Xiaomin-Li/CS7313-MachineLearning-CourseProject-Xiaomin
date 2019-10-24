@@ -4,7 +4,8 @@
 #   arXiv:1708.06519v1
 #   Aug 2017
 #
-# time python3 compress_classifier.py --arch resnet34  --dataset=cifar10_resize ../../../data.cifar10 -p=50 -b 128 --lr=0.3 --epochs=180 --compress=../network_slimming/resnet34_slimming.yaml --resume-from ../../../resnet_dense_cifar10/checkpoint.pth.tar -j=30 -n resnet34_cifar10_slimming_50spa
+# time python3 compress_classifier.py --arch resnet34  --dataset=cifar10_resize ../../../data.cifar10 -p=50 -b 128 --lr=0.3 --epochs=180 --compress=../network_slimming/resnet34_slimming.yaml --resume-from ../experiment_results/resnet34_cifar_scratch/checkpoint.pth.tar -j=30 -n resnet34_cifar10_scratch_slimming_50spa
+# time python3 compress_classifier.py --arch resnet34  --pretrained ../../../datasets/ImageNet -p=50 -b 128 --lr=0.3 --epochs=180 --compress=../network_slimming/resnet34_slimming.yaml -j=30 -n resnet34_slimming_10-4
 
 
 # Parameters:
@@ -63,22 +64,22 @@ regularizers:
     class: L1Regularizer
     reg_regims:   
       #module.conv1.weight  
-      module.layer1.0.bn2.weight: 0.005
-      module.layer1.1.bn2.weight: 0.005
-      module.layer1.2.bn2.weight: 0.005
-      module.layer2.0.bn2.weight: 0.005
-      module.layer2.1.bn2.weight: 0.005
-      module.layer2.2.bn2.weight: 0.005
-      module.layer2.3.bn2.weight: 0.005
-      module.layer3.0.bn2.weight: 0.005
-      module.layer3.1.bn2.weight: 0.005
-      module.layer3.2.bn2.weight: 0.005
-      module.layer3.3.bn2.weight: 0.005
-      module.layer3.4.bn2.weight: 0.005
-      module.layer3.5.bn2.weight: 0.005
-      module.layer4.0.bn2.weight: 0.005
-      module.layer4.1.bn2.weight: 0.005
-      module.layer4.2.bn2.weight: 0.005
+      module.layer1.0.bn2.weight: 0.0001
+      module.layer1.1.bn2.weight: 0.0001
+      module.layer1.2.bn2.weight: 0.0001
+      module.layer2.0.bn2.weight: 0.0001
+      module.layer2.1.bn2.weight: 0.0001
+      module.layer2.2.bn2.weight: 0.0001
+      module.layer2.3.bn2.weight: 0.0001
+      module.layer3.0.bn2.weight: 0.0001
+      module.layer3.1.bn2.weight: 0.0001
+      module.layer3.2.bn2.weight: 0.0001
+      module.layer3.3.bn2.weight: 0.0001
+      module.layer3.4.bn2.weight: 0.0001
+      module.layer3.5.bn2.weight: 0.0001
+      module.layer4.0.bn2.weight: 0.0001
+      module.layer4.1.bn2.weight: 0.0001
+      module.layer4.2.bn2.weight: 0.0001
 
 policies:
   - lr_scheduler:
