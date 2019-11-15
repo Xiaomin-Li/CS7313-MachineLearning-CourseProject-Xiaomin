@@ -1,0 +1,21 @@
+Resnet34 transfer on cifar10_resize then prune (structure pruning, network slimming)
+(use the upper dense model) 
+Model       Accuracy TOP1       TOP5
+0.5         88.440              99.430     * might not be correct  
+
+Resnet34 train from scratch cifar10_resize then prune (structure pruning, network slimming)
+(use the upper scratch model)
+Parameter       Accuracy TOP1       TOP5            Loss      
+0.007           90.720              99.610          0.281  *might not be correct 
+
+
+
+Now the leaf3 node is running network slimming for resnet34 pre-trained on imagenet 
+
+-network slimming method need to run the network slimming algorithm first with scaling factor 
+for each bach normalization layer which is so slow, my guess is that it need to re-calculate all
+the batch normalization part which tantamount to re-train the whole model.
+-then it need to prune the model with different sparsity 
+-maybe it's another drawback for structured pruning method, the model prepartation time is too long 
+where the inference accuracy is not as high as unstructured pruning.  
+-none of the former paper report the computation cost during pruning time 

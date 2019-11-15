@@ -1,7 +1,7 @@
 
 #prune after transfer learning resnet34
 # time python3 compress_classifier.py -a=resnet34 --dataset=cifar10_resize -p=50 ../../../data.cifar10/ -j=12 -b 64 --epochs=50 --lr=0.005 --compress=../agp-pruning/resnet34_prune_after_70spa_agp.yaml --vs=0 --resume-from ../../../experiment_results/resnet34_prune_after_50spa/checkpoint.pth.tar -n resnet34_prune_after_70spa
-
+# time python3 compress_classifier.py -a=resnet34 --dataset=cifar10_resize -p=50 -b 64 ../../../data.cifar10/ -j=12 --epochs=50 --lr=0.005 --compress=../agp-pruning/resnet34_prune_after_70spa_agp.yaml --vs=0 --resume-from ../../../experiment_results/resnet34_50spa_cifar10/checkpoint.pth.tar -n resnet34_50spa_trans_cifar10_70spa
 version: 1
 
 pruners:

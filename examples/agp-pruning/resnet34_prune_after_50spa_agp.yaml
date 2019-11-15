@@ -1,6 +1,7 @@
 
 #prune after transfer learning resnet34
 #time python3 compress_classifier.py -a=resnet34 --dataset=cifar10_resize -p=50 -b 64 ../../../data.cifar10/ -j=12 --epochs=50 --lr=0.005 --compress=../agp-pruning/resnet34_prune_after_50spa_agp.yaml --vs=0 --resume-from ../../../experiment_results/resnet_dense_cifar10/checkpoint.pth.tar
+#time python3 compress_classifier.py -a=resnet34 --dataset=cifar10_resize -p=50 -b 64 ../../../data.cifar10/ -j=12 --epochs=50 --lr=0.005 --compress=../agp-pruning/resnet34_prune_after_50spa_agp.yaml --vs=0 --resume-from ../../../experiment_results/resnet34_50spa_cifar10/checkpoint.pth.tar
 
 #time python3 compress_classifier.py -a=resnet34 --dataset=food101_resize -p=50 -b 64 ../../../datasets/food-101/ -j=12 --epochs=50 --lr=0.005 --compress=../agp-pruning/resnet34_prune_after_50spa_agp.yaml --vs=0 --resume-from ../../../experiment_results/food-101-transfer-results/resnet34_dense_food101___2019.09.27-100008/resnet34_dense_food101_checkpoint.pth.tar -n resnet34_prune_after_50spa_food101
 version: 1

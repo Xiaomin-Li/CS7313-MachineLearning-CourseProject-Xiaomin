@@ -1,12 +1,12 @@
 #time python3 compress_classifier.py -a=vgg16 --pretrained -p=50 /home/cody/datasets/imagenet -j=30 --epochs=95 --lr=0.005 --compress=../agp-pruning/vgg16_90spa.yaml --vs=0 --resume-from ../../../vgg16_80spa_chkp/checkpoint.pth.tar
-
+#time python3 compress_classifier.py -a=vgg16 --dataset=cifar10_resize -p=50 -b 4 ../../../data.cifar10/ -j=12 --epochs=50 --lr=0.005 --compress=../agp-pruning/vgg16_90spa.yaml --vs=0 --resume-from ./logs/vgg16_prune_after_80spa_cifar10___2019.10.23-235425/vgg16_prune_after_80spa_cifar10_checkpoint.pth.tar -n vgg16_prune_after_90spa_cifar10
 version: 1
 
 pruners:
 
   conv_pruner:
     class: AutomatedGradualPruner
-    initial_sparsity : 0.05
+    initial_sparsity : 0.80
     final_sparsity: 0.90
     weights: [
     #module.conv1.weight,
@@ -25,6 +25,9 @@ pruners:
     features.module.28.weight,
     #classifier.0.weight,
     #classifier.3.weight]
+    classifier.0.weight,
+    classifier.3.weight,
+    classifier.6.weight
     ]
 
 
@@ -38,13 +41,13 @@ policies:
 
   - pruner:
       instance_name : conv_pruner
-    starting_epoch: 80
-    ending_epoch: 89
+    starting_epoch: 0
+    ending_epoch: 25
     frequency: 1
 
 
   - lr_scheduler:
       instance_name: pruning_lr
-    starting_epoch: 90
-    ending_epoch: 95
+    starting_epoch: 26
+    ending_epoch: 50
     frequency: 1

@@ -1,3 +1,14 @@
+Resnet34(pre-trained on Imagenet) pruning results 
+Model       Accuracy TOP1       TOP5            Loss
+dense       73.30               91.42
+50%
+70%         72.734              91.118          1.094 
+80%         72.676              91.084          1.102
+90%         71.412              90.364          1.147
+
+
+
+
 Resnet34(pre-trained) transfer on cifar10_resize 
 Model       Accuracy TOP1       TOP5
 dense       96.130              99.940
@@ -15,15 +26,27 @@ Model       Accuracy TOP1       TOP5
 80%         96.570              99.860
 90%         96.300              99.880
 
-Resnet34 transfer on cifar10_resize then prune (structure pruning, network slimming)
-(use the upper dense model) 
-Model       Accuracy TOP1       TOP5
-0.5         88.440              99.430     * might not be accurate 
 
-Resnet34 train from scratch cifar10_resize then prune (structure pruning, network slimming)
-(use the upper scratch model)
-Parameter       Accuracy TOP1       TOP5            Loss      
-0.007           90.720              99.610          0.281
+
+//it doesn't make sense  //the model has already pruned, the later prunning doesn't prune anything at all. 
+//just a few more epochs fine-tuning 
+Resnet34(pre-trained) prune with sparsity and then transfer to cifar10_resize then prune 50%
+Pre-trained model sparsity    Transfered model pruning sparsity       Accuracy TOP1         TOP5        Loss 
+50%                             50%                                     96.760              99.830      0.112 
+70%                             50%                                     96.580              99.890      0.112
+80%                             50%                                     96.760              99.940      0.106
+90%                             50%                                     96.120              99.870      0.131
+
+//what if we use a less sparse pruned model and then prune it after transfer learning 
+Pre-trained model sparsity    Transfered model pruning sparsity       Accuracy TOP1         TOP5        Loss 
+50%                             70%                                     96.650              99.850      0.117
+50%                             80%                                     96.740              99.860      0.110
+50%                             90%                                     96.500              99.870      0.118
+
+70%                             80%                                     96.610              99.870      0.110
+70%                             90%                                     96.350              99.820      0.121
+
+80%                             90%                                     96.290              99.940      0.121
 
 
 
@@ -45,6 +68,17 @@ Model       Accuracy TOP1       TOP5
 90%         84.150              95.810
 
 
+
+
+VGG16(pre-trained on Imagenet) pruning results (except the last three fc layer)
+Model       Accuracy TOP1       TOP5            Loss
+dense       72.59               91.38     --official 
+50%
+70%         72.476              91.144          1.118
+80%         71.628              90.680          1.142
+90%         70.830              90.096          1.172
+
+
 VGG16（pre-trained） transfer on cifar10_resize 
 Model       Accuracy TOP1       TOP5
 dense       93.080              99.720
@@ -59,8 +93,8 @@ VGG16 transfer on cifar10_resize then prune
 Model       Accuracy TOP1       TOP5 
 50%         94.560              99.860
 70%         95.070              99.870
-80%
-90%
+80%         92.810              99.820
+90%         out of memory 
 
 
 
