@@ -93,8 +93,8 @@ VGG16 transfer on cifar10_resize then prune
 Model       Accuracy TOP1       TOP5 
 50%         94.560              99.860
 70%         95.070              99.870
-80%         92.810              99.820
-90%         out of memory 
+80%         94.680              99.900
+90%         94.600              99.830 
 
 
 
