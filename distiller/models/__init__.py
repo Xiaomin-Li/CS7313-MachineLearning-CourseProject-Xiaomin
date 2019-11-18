@@ -99,6 +99,8 @@ def create_model(pretrained, dataset, arch, parallel=True, device_ids=None):
             model, cadene = _create_imagenet_model(arch, pretrained)
         elif dataset == 'cifar10':
             model = _create_cifar10_model(arch, pretrained)
+        elif dataset == 'fmnist_resize':
+            model = _create_cifar10_model(arch, pretrained)
         elif dataset == 'cifar10_resize':
             model, cadene = _create_imagenet_model(arch, pretrained)
         elif dataset == 'food101_resize':
