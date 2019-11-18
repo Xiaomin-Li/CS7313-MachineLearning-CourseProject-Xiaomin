@@ -30,7 +30,7 @@ from distiller.utils import set_model_input_shape_attr
 import logging
 msglogger = logging.getLogger()
 
-SUPPORTED_DATASETS = ('imagenet', 'cifar10', 'mnist', 'cifar10_resize','food101_resize')
+SUPPORTED_DATASETS = ('imagenet', 'cifar10', 'mnist', 'cifar10_resize','food101_resize', 'fmnist_resize')
 
 # ResNet special treatment: we have our own version of ResNet, so we need to over-ride
 # TorchVision's version.
