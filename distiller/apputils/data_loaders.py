@@ -28,7 +28,7 @@ import numpy as np
 import distiller
 
 
-DATASETS_NAMES = ['imagenet', 'cifar10', 'mnist', 'cifar10_resize', 'food101_resize']
+DATASETS_NAMES = ['imagenet', 'cifar10', 'mnist', 'cifar10_resize', 'food101_resize', 'fmnist_resize']
 
 
 def classification_dataset_str_from_arch(arch):
@@ -44,6 +44,7 @@ def classification_dataset_str_from_arch(arch):
 def classification_num_classes(dataset):
     return {'cifar10': 10,
             'mnist': 10,
+            'fmnist_resize': 10,
             'cifar10_resize': 10,
             'food101_resize':101,
             'imagenet': 1000}.get(dataset, None)
@@ -60,6 +61,8 @@ def classification_get_input_shape(dataset):
         return 1, 3, 224, 224
     elif dataset == 'mnist':
         return 1, 1, 28, 28
+    elif dataset == 'fmnist_resize':
+        return 1, 1, 32, 32
     else:
         raise ValueError("dataset %s is not supported" % dataset)
 
@@ -67,6 +70,7 @@ def classification_get_input_shape(dataset):
 def __dataset_factory(dataset):
     return {'cifar10': cifar10_get_datasets,
             'mnist': mnist_get_datasets,
+            'fmnist_resize' fmnist_resize_get_datasets,
             'cifar10_resize': cifar10_resize_get_datasets,
             'food101_resize':food101_resize_get_datasets,
             'imagenet': imagenet_get_datasets}.get(dataset, None)
@@ -123,6 +127,22 @@ def mnist_get_datasets(data_dir):
 
     return train_dataset, test_dataset
 
+def fmnist_resize_get_datasets(data_dir): 
+    train_transform = transforms.Compose([
+        transforms.RandomResizedCrop(32),
+        transforms.RandomHorizontalFlip(),
+        transforms.ToTensor(),
+        transforms.Normalize((0.1307,), (0.3081,))
+    ])
+    train_dataset = datasets.FashionMNIST(root=data_dir, train=True,
+                                   download=True, transform=train_transform)
+    test_transform = transforms.Compose([
+        transforms.ToTensor(),
+        transforms.Normalize((0.1307,), (0.3081,))
+    ])
+    test_dataset = datasets.FashionMNIST(root=data_dir, train=False,
+                                  transform=test_transform)
+    return train_dataset, test_dataset
 
 def cifar10_get_datasets(data_dir):
     """Load the CIFAR10 dataset.

@@ -111,3 +111,12 @@ scratch     72.412              91.802
 VGG16 transfer on food101_resize then prune 
 (use the upper dense model) 
 Model       Accuracy TOP1       TOP5 
+
+
+
+
+resnet20_cifar 
+Model       Accuracy TOP1       TOP5 
+scratch     91.250              99.720
+50%         83.670              99.320 
+

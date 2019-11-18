@@ -68,7 +68,7 @@ import torch.nn as nn
 # Logger handle
 msglogger = logging.getLogger()
 
-custom_datasets = ['cifar10_resize', 'food101_resize']
+custom_datasets = ['cifar10_resize', 'food101_resize', 'fmnist_resize']
 
 def main():
     # Parse arguments
@@ -84,7 +84,7 @@ def main():
     
 def handle_subapps(model, criterion, optimizer, compression_scheduler, pylogger, args):
     if args.transfer or args.dataset in custom_datasets:
-        if args.arch == 'resnet34':
+        if args.arch == 'resnet34' or 'resnet20_cifar':
             model.module.fc = nn.Linear(model.module.fc.in_features, args.num_classes)
             
             if  args.resumed_checkpoint_path:
@@ -93,7 +93,6 @@ def handle_subapps(model, criterion, optimizer, compression_scheduler, pylogger,
             model = nn.DataParallel(model, device_ids=args.gpus)
             
             print(model.module.fc)
-
         elif args.arch == 'vgg16':
             model.classifier[6] = nn.Linear(model.classifier[6].in_features, args.num_classes)
             if  args.resumed_checkpoint_path:
