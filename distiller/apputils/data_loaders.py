@@ -62,7 +62,7 @@ def classification_get_input_shape(dataset):
     elif dataset == 'mnist':
         return 1, 1, 28, 28
     elif dataset == 'fmnist_resize':
-        return 1, 1, 32, 32
+        return 1, 3, 32, 32
     else:
         raise ValueError("dataset %s is not supported" % dataset)
 
@@ -132,13 +132,13 @@ def fmnist_resize_get_datasets(data_dir):
         transforms.RandomResizedCrop(32),
         transforms.RandomHorizontalFlip(),
         transforms.ToTensor(),
-        transforms.Normalize((0.1307,), (0.3081,))
+        transforms.Normalize((0.1307, 0.1307, 0.1307), (0.3081, 0.3081, 0.3081))
     ])
     train_dataset = datasets.FashionMNIST(root=data_dir, train=True,
                                    download=True, transform=train_transform)
     test_transform = transforms.Compose([
         transforms.ToTensor(),
-        transforms.Normalize((0.1307,), (0.3081,))
+        transforms.Normalize((0.1307, 0.1307, 0.1307), (0.3081, 0.3081, 0.3081))
     ])
     test_dataset = datasets.FashionMNIST(root=data_dir, train=False,
                                   transform=test_transform)
