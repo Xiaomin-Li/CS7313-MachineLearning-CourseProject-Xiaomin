@@ -70,7 +70,7 @@ def classification_get_input_shape(dataset):
 def __dataset_factory(dataset):
     return {'cifar10': cifar10_get_datasets,
             'mnist': mnist_get_datasets,
-            'fmnist_resize' fmnist_resize_get_datasets,
+            'fmnist_resize' : fmnist_resize_get_datasets,
             'cifar10_resize': cifar10_resize_get_datasets,
             'food101_resize':food101_resize_get_datasets,
             'imagenet': imagenet_get_datasets}.get(dataset, None)
