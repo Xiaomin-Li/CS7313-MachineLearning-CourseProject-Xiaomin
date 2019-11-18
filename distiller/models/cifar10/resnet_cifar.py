@@ -98,7 +98,7 @@ class ResNetCifar(nn.Module):
 
         self.inplanes = 16  # 64
         super(ResNetCifar, self).__init__()
-        self.conv1 = nn.Conv2d(3, self.inplanes, kernel_size=3, stride=1, padding=1, bias=False)
+        self.conv1 = nn.Conv2d(1, self.inplanes, kernel_size=3, stride=1, padding=1, bias=False)
         self.bn1 = nn.BatchNorm2d(self.inplanes)
         self.relu = nn.ReLU(inplace=True)
         self.layer1 = self._make_layer(self.layer_gates[0], block, 16, layers[0])
