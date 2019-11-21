@@ -21,6 +21,7 @@ scratch     88.720              99.450
 Resnet34 transfer on cifar10_resize then prune 
 (use the upper dense model) 
 Model       Accuracy TOP1       TOP5 
+dense       96.130              99.940
 50%         96.450              99.890
 70%         96.610              99.950
 80%         96.570              99.860
@@ -39,13 +40,16 @@ Pre-trained model sparsity    Transfered model pruning sparsity       Accuracy T
 
 //what if we use a less sparse pruned model and then prune it after transfer learning 
 Pre-trained model sparsity    Transfered model pruning sparsity       Accuracy TOP1         TOP5        Loss 
+50%                             50%                                     96.580              99.900
 50%                             70%                                     96.650              99.850      0.117
 50%                             80%                                     96.740              99.860      0.110
 50%                             90%                                     96.500              99.870      0.118
 
+70%                             70%                                     96.370              99.900
 70%                             80%                                     96.610              99.870      0.110
 70%                             90%                                     96.350              99.820      0.121
 
+80%                             80%                                     96.200              99.920
 80%                             90%                                     96.290              99.940      0.121
 
 
@@ -111,7 +115,10 @@ scratch     72.412              91.802
 VGG16 transfer on food101_resize then prune 
 (use the upper dense model) 
 Model       Accuracy TOP1       TOP5 
-
+50%         85.485              96.618
+70%         85.750              96.602
+80%         85.604              96.451
+90%         85.073              96.309
 
 
 
@@ -119,4 +126,3 @@ resnet20_cifar
 Model       Accuracy TOP1       TOP5 
 scratch     91.250              99.720
 50%         83.670              99.320 
-
