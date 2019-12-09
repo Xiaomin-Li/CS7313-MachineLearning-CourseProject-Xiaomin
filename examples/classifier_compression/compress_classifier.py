@@ -62,8 +62,9 @@ import parser
 import os
 import numpy as np
 import torch.nn as nn
-
-
+import wandb 
+#wandb.init(config=args)
+wandb.init(project="pruning-power-measurement")
 
 # Logger handle
 msglogger = logging.getLogger()
@@ -77,6 +78,7 @@ def main():
     if app.handle_subapps():
         return
     init_knowledge_distillation(app.args,  app.model, app.compression_scheduler)
+    wandb.watch(app.model)
     app.run_training_loop()
     # Finally run results on the test set
     return app.test()
