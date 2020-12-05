@@ -1,3 +1,16 @@
+<p>CS7313 Advanced Machine Learning and Pattern Recognition Fall 2020 Course Project 
+  
+* This project is built on top of the NervanaSystems/Distiller model compression python library.
+* I have made a few changes including adding new models, datasets, pruning pipelines, system power measurement, ayalysis, etc. 
+* The main entrance of the model compression system is at examples/classifier_compression/compress_classifier.py 
+* Some of the results can be found in the analysis folder.
+
+<p>-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
 <center> <img src="imgs/banner1.png"></center>
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/NervanaSystems/distiller/blob/master/LICENSE)
